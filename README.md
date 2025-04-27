@@ -3,6 +3,6 @@
 </p>
 
 ## To run the script
-``bash
+```bash
 loadstring(game:HttpGet("https://raw.githubusercontent.com/IamMepl/ROBLOX-ESP/main/esp.lua"))()
-``
+```
