@@ -117,14 +117,6 @@ ToggleButton.Size = UDim2.new(0.8, 0, 0.4, 0)
 ToggleButton.Position = UDim2.new(0.1, 0, 0.3, 0)
 ToggleButton.Text = "ESP: On"
 
-ToggleButton.MouseEnter:Connect(function()
-ToggleButton.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
-end)
-
-ToggleButton.MouseLeave:Connect(function()
-ToggleButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-end)
-
 ToggleButton.MouseButton1Click:Connect(function()
 toggleEsp()
 if espEnabled then
