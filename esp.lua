@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
-local espEnabled = false
+local espEnabled = true
 
 local function esp(player)
 local character = player.Character
