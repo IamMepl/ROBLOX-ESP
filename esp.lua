@@ -29,27 +29,9 @@ textlabel.TextSize = 14
 end
 end
 
-for _, player in pairs(Players:GetPlayers()) do
-if player ~= Players.LocalPlayer then
-esp(player)
-end
-end
-
-Players.PlayerAdded:Connect(function(player)
-player.CharacterAdded:Connect(function()
-esp(player)
-end)
-end)
-
-local function toggleEsp()
-espEnabled = not espEnabled
-for _, player in pairs(Players:GetPlayers()) do
-if player ~= Players.LocalPlayer then
+local function removeEsp(player)
 local character = player.Character
 if character then
-if espEnabled then
-esp(player)
-else
 if character:FindFirstChild("Highlight") then
 character:FindFirstChild("Highlight"):Destroy()
 end
@@ -57,6 +39,32 @@ if character.Head:FindFirstChild("BillboardGui") then
 character.Head:FindFirstChild("BillboardGui"):Destroy()
 end
 end
+end
+
+for _, player in pairs(Players:GetPlayers()) do
+if player ~= Players.LocalPlayer then
+if espEnabled then
+esp(player)
+end
+end
+end
+
+Players.PlayerAdded:Connect(function(player)
+player.CharacterAdded:Connect(function(character)
+if espEnabled then
+esp(player)
+end
+end)
+end)
+
+local function toggleEsp()
+espEnabled = not espEnabled
+for _, player in pairs(Players:GetPlayers()) do
+if player ~= Players.LocalPlayer then
+if espEnabled then
+esp(player)
+else
+removeEsp(player)
 end
 end
 end
@@ -108,6 +116,14 @@ ToggleButton.Parent = Frame
 ToggleButton.Size = UDim2.new(0.8, 0, 0.4, 0)
 ToggleButton.Position = UDim2.new(0.1, 0, 0.3, 0)
 ToggleButton.Text = "ESP: On"
+
+ToggleButton.MouseEnter:Connect(function()
+ToggleButton.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
+end)
+
+ToggleButton.MouseLeave:Connect(function()
+ToggleButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+end)
 
 ToggleButton.MouseButton1Click:Connect(function()
 toggleEsp()
